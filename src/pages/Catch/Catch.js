@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 import CatchButton from './CatchButton';
 import CatchList from './CatchList';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   selectPokemonButton: {
@@ -13,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Catch() {
   const classes = useStyles();
+  const history = useHistory();
   const [selectedPokemon, setSelectedPokemon] = useState();
 
   function pokemonSelectedCb(pokemon) {
@@ -20,6 +22,8 @@ function Catch() {
   }
   function save(pokemon) {
     console.log('save', pokemon);
+    // Redirect home after saving
+    history.push('/');
   }
   return (
     <>
