@@ -1,12 +1,8 @@
-import {
-  AppBar,
-  Container,
-  createMuiTheme,
-  ThemeProvider,
-  Toolbar,
-} from '@material-ui/core';
+import { Container, createMuiTheme, ThemeProvider } from '@material-ui/core';
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import './App.css';
+import AppBar from './components/AppBar/AppBar';
 import Catch from './pages/Catch/Catch';
 import Details from './pages/Details/Details';
 import Home from './pages/Home/Home';
@@ -27,9 +23,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <div className="App">
         <Router>
-          <AppBar position="static">
-            <Toolbar></Toolbar>
-          </AppBar>
+          <AppBar />
           <Container>
             <Switch>
               <Route path="/catch">

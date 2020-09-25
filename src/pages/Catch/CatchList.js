@@ -8,6 +8,7 @@ import {
   IconButton,
 } from '@material-ui/core';
 import { Add as AddIcon } from '@material-ui/icons';
+import classNames from 'classnames';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
   gridList: {
     width: 500,
     height: 450,
+  },
+  gridTile: {
+    maxWidth: '200px',
   },
   icon: {
     color: 'white',
@@ -44,13 +48,15 @@ function CatchList({ pokemonSelectedCb }) {
     pokemonSelectedCb(pokemon);
   }
   return (
-    <GridList cellHeight={160} cols={5}>
+    <GridList cellHeight={160}>
       {pokemonList.map((pokemon) => {
         const isSelected = selectedPokemonId === pokemon.id;
         return (
           <GridListTile
             key={pokemon.id}
-            className={isSelected ? classes.selected : ''}
+            className={classNames(classes.gridTile, {
+              [`${classes.selected}`]: isSelected,
+            })}
           >
             <img src={pokemon.sprites.front_default} alt={pokemon.name} />
             <GridListTileBar
