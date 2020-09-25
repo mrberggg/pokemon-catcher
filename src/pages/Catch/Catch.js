@@ -32,9 +32,17 @@ function Catch({ dispatch }) {
       <h1>Catch a Pokemon</h1>
       <CatchList pokemonSelectedCb={pokemonSelectedCb} />
       {selectedPokemon ? (
-        <div className={classes.selectPokemonButton}>
-          <CatchButton selectedPokemon={selectedPokemon} save={save} />
-        </div>
+        <>
+          <h2>{selectedPokemon.name}'s Abilities</h2>
+          <ul>
+            {selectedPokemon.abilities.map((a) => (
+              <li key={a.ability.name}>{a.ability.name}</li>
+            ))}
+          </ul>
+          <div className={classes.selectPokemonButton}>
+            <CatchButton selectedPokemon={selectedPokemon} save={save} />
+          </div>
+        </>
       ) : null}
     </>
   );

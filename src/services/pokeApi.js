@@ -1,11 +1,17 @@
 import axios from 'axios';
+import { capitalize } from 'lodash';
+
+function formatPokemonData(pokemon) {
+  pokemon.name = capitalize(pokemon.name);
+  return pokemon;
+}
 
 async function getPokemonDetailsByUrl(url) {
   const res = await axios.get(url);
   if (res.status !== 200) {
     throw new Error(`Error fetching pokemon details`);
   }
-  return res.data;
+  return formatPokemonData(res.data);
 }
 
 async function getPokemonDetails(id) {
@@ -13,7 +19,7 @@ async function getPokemonDetails(id) {
   if (res.status !== 200) {
     throw new Error(`Error fetching pokemon details`);
   }
-  return res.data;
+  return formatPokemonData(res.data);
 }
 
 async function getPokemon(offset = 10, limit = 10) {
