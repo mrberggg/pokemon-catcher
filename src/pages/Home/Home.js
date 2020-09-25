@@ -1,6 +1,8 @@
 import { Link as RouterLink } from 'react-router-dom';
 import { Button, makeStyles } from '@material-ui/core';
 import React from 'react';
+import { connect } from 'react-redux';
+import CaughtList from './CaughtList';
 
 const useStyles = makeStyles({
   catchButton: {
@@ -9,7 +11,7 @@ const useStyles = makeStyles({
   },
 });
 
-function Home() {
+function Home({ caughtPokemon }) {
   const classes = useStyles();
   return (
     <div className="home">
@@ -24,8 +26,11 @@ function Home() {
           Catch pokemon
         </Button>
       </div>
+      <div>
+        <CaughtList pokemonList={caughtPokemon} />
+      </div>
     </div>
   );
 }
 
-export default Home;
+export default connect((state) => state)(Home);

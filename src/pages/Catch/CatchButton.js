@@ -29,7 +29,7 @@ function CatchButton({ selectedPokemon, save }) {
         Catch Pokemon
       </Button>
       <Dialog open={dialogIsOpen} onClose={handleClickClose}>
-        <DialogTitle id="form-dialog-title">Name the pokemon</DialogTitle>
+        <DialogTitle>Name the pokemon</DialogTitle>
         <DialogContent>
           <DialogContentText>
             Type: {selectedPokemon.types.map((t) => t.type.name).join(', ')}

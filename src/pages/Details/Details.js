@@ -1,4 +1,4 @@
-import { CircularProgress, makeStyles } from '@material-ui/core';
+import { LinearProgress, makeStyles } from '@material-ui/core';
 import { capitalize } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -16,14 +16,17 @@ const useStyles = makeStyles({
 function Details() {
   const classes = useStyles();
   const [pokemonDetails, setPokemonDetails] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
   useEffect(() => {
+    setIsLoading(true);
     pokeApi.getPokemonDetails(id).then((res) => {
       setPokemonDetails(res);
+      setIsLoading(false);
     });
   }, [id]);
-  if (!pokemonDetails) {
-    return <CircularProgress />;
+  if (isLoading) {
+    return <LinearProgress />;
   }
   return (
     <>

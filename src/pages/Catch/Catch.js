@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core';
 import CatchButton from './CatchButton';
 import CatchList from './CatchList';
 import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { CATCH_POKEMON } from '../../state/caughtPokemon/caughtPokemon.actions';
 
 const useStyles = makeStyles((theme) => ({
   selectPokemonButton: {
@@ -12,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Catch() {
+function Catch({ dispatch }) {
   const classes = useStyles();
   const history = useHistory();
   const [selectedPokemon, setSelectedPokemon] = useState();
@@ -21,7 +23,7 @@ function Catch() {
     setSelectedPokemon(pokemon);
   }
   function save(pokemon) {
-    console.log('save', pokemon);
+    dispatch({ type: CATCH_POKEMON, payload: pokemon });
     // Redirect home after saving
     history.push('/');
   }
@@ -38,4 +40,4 @@ function Catch() {
   );
 }
 
-export default Catch;
+export default connect()(Catch);
