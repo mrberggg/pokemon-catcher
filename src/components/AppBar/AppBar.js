@@ -15,7 +15,7 @@ function AppBar() {
       <Toolbar>
         {isHome ? null : (
           <IconButton edge="start" component={RouterLink} to="/">
-            <ArrowBack fontSize="large" />
+            <ArrowBack fontSize="large" data-testid="back-arrow" />
           </IconButton>
         )}
       </Toolbar>

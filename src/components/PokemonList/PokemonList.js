@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function PokemonList({ pokemonList, selectedPokemon, actionIcon }) {
+function PokemonList({ pokemonList, selectedPokemon, actionIcon = () => {} }) {
   const classes = useStyles();
   return (
     <GridList cellHeight={160}>
@@ -40,12 +40,14 @@ function PokemonList({ pokemonList, selectedPokemon, actionIcon }) {
             className={classNames(classes.gridTile, {
               [`${classes.selected}`]: isSelected,
             })}
+            data-testid="grid-list-tile"
           >
             <img src={pokemon.sprites.front_default} alt={pokemon.name} />
             <GridListTileBar
               title={pokemon.name}
               actionIcon={actionIcon({ pokemon, isSelected })}
               className={classes.icon}
+              data-testid="grid-list-tile-bar"
             />
           </GridListTile>
         );
